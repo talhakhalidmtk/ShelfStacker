@@ -23,3 +23,6 @@ class Membership(models.Model):
 
     def __str__(self):
         return f'{self.user.username}\'s Membership'
+
+    def books_borrowed(self):
+        return self.loan_set.count()
