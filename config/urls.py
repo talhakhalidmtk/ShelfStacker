@@ -1,5 +1,5 @@
 """
-URL configuration for shelfstacker project.
+URL configuration for config project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.2/topics/http/urls/
@@ -23,5 +23,5 @@ urlpatterns = [
     path('auth/', include('account.urls')),
     path('', include('catalog.urls')),
     path('memberships/', include('membership.urls')),
-    path('loans/', include('loan.urls')),
+    path('lend/', include('lend.urls')),
 ]

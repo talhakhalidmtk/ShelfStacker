@@ -1,4 +1,4 @@
-from django.contrib.auth.models import User
+from account.models import User
 from rest_framework import serializers
 
 from .models import Book, Publisher, BookContributor, Rack
@@ -36,7 +36,7 @@ class BookSerializer(serializers.ModelSerializer):
         contributors = instance.bookcontributor_set.all()
         representation['contributors'] = [
             {
-                'name': contributor.contributor.username,
+                'name': contributor.contributor.get_full_name(),
                 'role': contributor.role
             } for contributor in contributors
         ]

@@ -1,4 +1,4 @@
-from django.contrib.auth.models import User
+from account.models import User
 from django.db import models
 
 
@@ -22,7 +22,7 @@ class Membership(models.Model):
     max_books_allowed = models.PositiveSmallIntegerField(default=5)
 
     def __str__(self):
-        return f'{self.user.username}\'s Membership'
+        return f'{self.user.get_full_name()}\'s Membership'
 
     def books_borrowed(self):
-        return self.loan_set.count()
+        return self.lend_set.count()

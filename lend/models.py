@@ -6,7 +6,7 @@ from catalog.models import Book
 from membership.models import Membership
 
 
-class Loan(models.Model):
+class Lend(models.Model):
     book = models.ForeignKey(Book, on_delete=models.SET_NULL, null=True)
     member = models.ForeignKey(Membership, on_delete=models.SET_NULL, null=True)
     quantity = models.PositiveIntegerField(default=1)
@@ -18,7 +18,7 @@ class Loan(models.Model):
         ordering = ['-date_borrowed']
 
     def __str__(self):
-        return f'{self.book} ({self.member.user.username})'
+        return f'{self.book} ({self.member.user.get_full_name()})'
 
     def is_overdue(self):
         return self.date_due and self.date_due < timezone.now().date()
