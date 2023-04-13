@@ -12,7 +12,8 @@ class PublisherSerializer(serializers.ModelSerializer):
 
 class BookContributorSerializer(serializers.ModelSerializer):
     book = serializers.PrimaryKeyRelatedField(queryset=Book.objects.all())
-    contributor = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
+    contributor = serializers.PrimaryKeyRelatedField(
+        queryset=User.objects.all())
 
     class Meta:
         model = BookContributor

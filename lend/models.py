@@ -8,7 +8,10 @@ from membership.models import Membership
 
 class Lend(models.Model):
     book = models.ForeignKey(Book, on_delete=models.SET_NULL, null=True)
-    member = models.ForeignKey(Membership, on_delete=models.SET_NULL, null=True)
+    member = models.ForeignKey(
+        Membership,
+        on_delete=models.SET_NULL,
+        null=True)
     quantity = models.PositiveIntegerField(default=1)
     date_borrowed = models.DateField(default=timezone.now)
     date_due = models.DateField(null=True, blank=True)

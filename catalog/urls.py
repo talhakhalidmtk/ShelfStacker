@@ -6,7 +6,10 @@ from . import views
 router = DefaultRouter()
 router.register(r'books', views.BookViewSet, basename='books')
 router.register(r'publishers', views.PublisherViewSet, basename='publishers')
-router.register(r'book_contributors', views.BookContributorViewSet, basename='book_contributors')
+router.register(
+    r'book_contributors',
+    views.BookContributorViewSet,
+    basename='book_contributors')
 router.register(r'racks', views.RackViewSet, basename='racks')
 
 urlpatterns = [
