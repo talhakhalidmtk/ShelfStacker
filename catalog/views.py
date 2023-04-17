@@ -1,9 +1,17 @@
+from django.db import transaction
 from rest_framework import viewsets
 from .serializers import BookSerializer, BookContributorSerializer, PublisherSerializer, RackSerializer
 from rest_framework.permissions import AllowAny
 
 
-class GenericModelViewSet(viewsets.ModelViewSet):
+class AtomicMixin:
+    @classmethod
+    def as_view(cls, *args, **kwargs):
+        view = super().as_view(*args, **kwargs)
+        return transaction.atomic()(view)
+
+
+class GenericModelViewSet(AtomicMixin, viewsets.ModelViewSet):
 
     def get_queryset(self):
         model = self.serializer_class.Meta.model
